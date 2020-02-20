@@ -110,6 +110,8 @@ class MentionsInput extends React.Component {
     onKeyDown: () => null,
     onSelect: () => null,
     onBlur: () => null,
+    showSuggestions: true,
+    suggestionsHandler: () => null,
   }
 
   constructor(props) {
@@ -245,6 +247,27 @@ class MentionsInput extends React.Component {
     if (!isNumber(this.state.selectionStart)) {
       // do not show suggestions when the input does not have the focus
       return null
+    }
+
+    const { showSuggestions, suggestionsHandler } = this.props
+
+    if (!showSuggestions) {
+      const suggestions = Object.values(this.state.suggestions).reduce(
+        (accResults, { results, queryInfo }) => [
+          ...accResults,
+          ...results.map((result, index) => ({
+            result,
+            queryInfo,
+            suggestionIndex: accResults.length + index,
+          })),
+        ],
+        []
+      )
+      suggestionsHandler({
+        suggestions: suggestions,
+        onAddSuggestion: this.addMention,
+      })
+      return
     }
 
     const suggestionsNode = (
