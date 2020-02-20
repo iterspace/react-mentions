@@ -1,13 +1,20 @@
 # [React Mentions](https://react-mentions.now.sh)
 
-[![CircleCI][build-badge]][build]
-[![codecov][codecov-badge]][codecov]
+[![CircleCI][build-badge]][build] [![codecov][codecov-badge]][codecov]
 [![npm package][npm-badge]][npm]
 [![semantic-release](https://img.shields.io/badge/%20%20%F0%9F%93%A6%F0%9F%9A%80-semantic--release-e10079.svg)](https://github.com/semantic-release/semantic-release)
 
-A React component that let's you mention people in a textarea like you are used to on Facebook or Twitter.
+A React component that let's you mention people in a textarea like you are used
+to on Facebook or Twitter.
 
-Used in production at [Signavio](https://signavio.com), [State](https://state.com), [Snips](https://snips.ai), [Swat.io](https://swat.io), [GotDone](https://www.gotdone.me), [Volinspire](https://volinspire.com), [Marvin](https://amazingmarvin.com), [Timely](https://timelyapp.com), [GuideFitter](https://www.guidefitter.com/), [Evite](https://www.evite.com/), [Publer](https://publer.me/), [Kontentino](https://www.kontentino.com/), and [you?](https://github.com/signavio/react-mentions/edit/master/README.md)
+Used in production at [Signavio](https://signavio.com),
+[State](https://state.com), [Snips](https://snips.ai),
+[Swat.io](https://swat.io), [GotDone](https://www.gotdone.me),
+[Volinspire](https://volinspire.com), [Marvin](https://amazingmarvin.com),
+[Timely](https://timelyapp.com), [GuideFitter](https://www.guidefitter.com/),
+[Evite](https://www.evite.com/), [Publer](https://publer.me/),
+[Kontentino](https://www.kontentino.com/), and
+[you?](https://github.com/signavio/react-mentions/edit/master/README.md)
 
 ## Getting started
 
@@ -29,7 +36,10 @@ The package exports two React components for rendering the mentions textarea:
 import { MentionsInput, Mention } from 'react-mentions'
 ```
 
-`MentionsInput` is the main component rendering the textarea control. It takes one or multiple `Mention` components as its children. Each `Mention` component represents a data source for a specific class of mentionable objects, such as users, template variables, issues, etc.
+`MentionsInput` is the main component rendering the textarea control. It takes
+one or multiple `Mention` components as its children. Each `Mention` component
+represents a data source for a specific class of mentionable objects, such as
+users, template variables, issues, etc.
 
 Example:
 
@@ -48,7 +58,8 @@ Example:
 </MentionsInput>
 ```
 
-You can find more examples here: [demo/src/examples](https://github.com/signavio/react-mentions/tree/master/demo/src/examples)
+You can find more examples here:
+[demo/src/examples](https://github.com/signavio/react-mentions/tree/master/demo/src/examples)
 
 ## Configuration
 
@@ -64,8 +75,11 @@ The `MentionsInput` supports the following props for configuring the widget:
 | suggestionsPortalHost       | DOM Element                                             | undefined      | Render suggestions into the DOM in the supplied host element.                          |
 | inputRef                    | React ref                                               | undefined      | Accepts a React ref to forward to the underlying input element                         |
 | allowSuggestionsAboveCursor | boolean                                                 | false          | Renders the SuggestionList above the cursor if there is not enough space below         |
+| showSuggestions             | boolean                                                 | true           | Renders the SuggestionsList                                                            |
+| suggestionsHandler          | function (suggestions, onAddSuggestion)                 | empty function | A callback that is invoked when the user types in a mentions input                     |
 
-Each data source is configured using a `Mention` component, which has the following props:
+Each data source is configured using a `Mention` component, which has the
+following props:
 
 | Prop name        | Type                                                         | Default value                               | Description                                                                                                                                            |
 | ---------------- | ------------------------------------------------------------ | ------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------ |
@@ -78,21 +92,37 @@ Each data source is configured using a `Mention` component, which has the follow
 | onAdd            | function (id, display)                                       | empty function                              | Callback invoked when a suggestion has been added (optional)                                                                                           |
 | appendSpaceOnAdd | boolean                                                      | `false`                                     | Append a space when a suggestion has been added (optional)                                                                                             |
 
-If a function is passed as the `data` prop, that function will be called with the current search query as first, and a callback function as second argument. The callback can be used to provide results asynchronously, e.g., after fetch requests. (It can even be called multiple times to update the list of suggestions.)
+If a function is passed as the `data` prop, that function will be called with
+the current search query as first, and a callback function as second argument.
+The callback can be used to provide results asynchronously, e.g., after fetch
+requests. (It can even be called multiple times to update the list of
+suggestions.)
 
 ## Styling
 
-_react-mentions_ supports css, css modules, and inline styles. It is shipped with only some essential inline style definitions and without any css. Some example inline styles demonstrating how to customize the appearance of the `MentionsInput` can be found at [demo/src/examples/defaultStyle.js](https://github.com/signavio/react-mentions/blob/master/demo/src/examples/defaultStyle.js).
+_react-mentions_ supports css, css modules, and inline styles. It is shipped
+with only some essential inline style definitions and without any css. Some
+example inline styles demonstrating how to customize the appearance of the
+`MentionsInput` can be found at
+[demo/src/examples/defaultStyle.js](https://github.com/signavio/react-mentions/blob/master/demo/src/examples/defaultStyle.js).
 
-If you want to use css, simply assign a `className` prop to `MentionsInput`. All DOM nodes rendered by the component will then receive class name attributes that are derived from the base class name you provided.
+If you want to use css, simply assign a `className` prop to `MentionsInput`. All
+DOM nodes rendered by the component will then receive class name attributes that
+are derived from the base class name you provided.
 
-If you want to avoid global class names and use css modules instead, you can provide the automatically generated class names as `classNames` to the `MentionsInput`. See [demo/src/examples/CssModules.js](https://github.com/signavio/react-mentions/blob/master/demo/src/examples/CssModules.js) for an example of using _react-mentions_ with css modules.
+If you want to avoid global class names and use css modules instead, you can
+provide the automatically generated class names as `classNames` to the
+`MentionsInput`. See
+[demo/src/examples/CssModules.js](https://github.com/signavio/react-mentions/blob/master/demo/src/examples/CssModules.js)
+for an example of using _react-mentions_ with css modules.
 
-You can also assign `className` and `style` props to the `Mention` elements to define how to highlight the mentioned words.
+You can also assign `className` and `style` props to the `Mention` elements to
+define how to highlight the mentioned words.
 
 ## Contributing
 
-Spawn a development server with an example page and module hot loading all set up:
+Spawn a development server with an example page and module hot loading all set
+up:
 
 ```
 npm start
@@ -104,9 +134,11 @@ Update the examples page on Github Pages:
 npm run pages-publish
 ```
 
-[build-badge]: https://circleci.com/gh/signavio/react-mentions/tree/master.svg?style=shield&circle-token=:circle-token
+[build-badge]:
+  https://circleci.com/gh/signavio/react-mentions/tree/master.svg?style=shield&circle-token=:circle-token
 [build]: https://circleci.com/gh/signavio/react-mentions/tree/master
 [npm-badge]: https://img.shields.io/npm/v/react-mentions.png?style=flat-square
 [npm]: https://www.npmjs.org/package/react-mentions
-[codecov-badge]: https://img.shields.io/codecov/c/github/signavio/react-mentions.svg
+[codecov-badge]:
+  https://img.shields.io/codecov/c/github/signavio/react-mentions.svg
 [codecov]: https://codecov.io/gh/signavio/react-mentions
